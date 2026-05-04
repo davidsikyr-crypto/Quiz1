@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
-export default function CreateQuiz({ saveQuiz, goToLibrary }) {
+
+export default function CreateQuiz({ saveQuiz, goToLibrary}) {
     const [title, setTitle] = useState("");
     const [question, setQuestion] = useState("");
     const [options, setOptions] = useState(["", "", "", ""]);
     const [answer, setAnswer] = useState("");
     const [list, setList] = useState([]);
+
 
     const addQuestion = () => {
         if (!question || !answer) return;
@@ -35,6 +37,7 @@ export default function CreateQuiz({ saveQuiz, goToLibrary }) {
         saveQuiz(newQuiz);
         goToLibrary();
     };
+
 
     return (
         <div>
@@ -76,11 +79,15 @@ export default function CreateQuiz({ saveQuiz, goToLibrary }) {
 
             <br /><br />
 
-            <button onClick={addQuestion}>Přidat otázku</button>
+            <button onClick={addQuestion}>Přidat otázku
+
+            </button>
 
             <h3>Počet otázek: {list.length}</h3>
 
             <button onClick={handleSave}>Uložit quiz</button>
+
         </div>
+
     );
 }
