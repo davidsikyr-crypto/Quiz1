@@ -28,9 +28,13 @@ function Quiz() {
         localStorage.setItem("quizzes", JSON.stringify(updated));
     };
 
+
     const handleAnswer = (option) => {
-        if (option === selectedQuiz.questions[current].answer) {
-            setScore((prev) => prev + 1);
+        const isCorrect = option === selectedQuiz.questions[current].answer;
+        const newScore = isCorrect ? score + 1 : score;
+
+        if (isCorrect) {
+            setScore(newScore);
         }
 
         const next = current + 1;
@@ -38,7 +42,7 @@ function Quiz() {
         if (next < selectedQuiz.questions.length) {
             setCurrent(next);
         } else {
-            alert(`Skóre: ${score + 1}/${selectedQuiz.questions.length}`);
+            alert(`Skóre: ${newScore}/${selectedQuiz.questions.length}`);
             setView("library");
             setCurrent(0);
             setScore(0);
@@ -65,6 +69,7 @@ function Quiz() {
             </div>
         );
     }
+
 
     return (
         <QuizLibrary
